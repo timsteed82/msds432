@@ -276,8 +276,8 @@ func main() {
 		go GetBuildingPermits(db)
 		go GetTaxiTrips(db)
 
-		// go GetCovidDetails(db)
-		// go GetCCVIDetails(db)
+		//go GetCovidDetails(db)
+		//go GetCCVIDetails(db)
 
 		http.HandleFunc("/", handler)
 
@@ -366,7 +366,7 @@ func GetTaxiTrips(db *sql.DB) {
 
 	// Get the the Taxi Trips for Taxi medallions list
 
-	var url = "https://data.cityofchicago.org/resource/wrvz-psew.json?$limit=500"
+	var url = "https://data.cityofchicago.org/resource/wrvz-psew.json?"
 
 	tr := &http.Transport{
 		MaxIdleConns:          10,
@@ -397,7 +397,7 @@ func GetTaxiTrips(db *sql.DB) {
 
 	// Get the Taxi Trip list for rideshare companies like Uber/Lyft list
 	// Transportation-Network-Providers-Trips:
-	var url_2 = "https://data.cityofchicago.org/resource/m6dm-c72p.json?$limit=500"
+	var url_2 = "https://data.cityofchicago.org/resource/m6dm-c72p.json?"
 
 	res_2, err := http.Get(url_2)
 	if err != nil {
@@ -585,7 +585,7 @@ func GetCommunityAreaUnemployment(db *sql.DB) {
 
 	// There are 77 known community areas in the data set
 	// So, set limit to 100.
-	var url = "https://data.cityofchicago.org/resource/iqnk-2tcu.json?$limit=100"
+	var url = "https://data.cityofchicago.org/resource/iqnk-2tcu.json?"
 
 	tr := &http.Transport{
 		MaxIdleConns:       10,
@@ -826,7 +826,7 @@ func GetBuildingPermits(db *sql.DB) {
 
 	// While doing unit-testing keep the limit value to 500
 	// later you could change it to 1000, 2000, 10,000, etc.
-	var url = "https://data.cityofchicago.org/resource/building-permits.json?$limit=500"
+	var url = "https://data.cityofchicago.org/resource/building-permits.json?"
 
 	tr := &http.Transport{
 		MaxIdleConns:       10,
